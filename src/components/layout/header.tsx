@@ -12,7 +12,7 @@ export default function AppHeader() {
       })}
     >
       <Group position="apart" sx={{ height: "100%" }}>
-        <Image src={logo} alt="logo" />
+        <Image src={logo} alt="logo" priority={true} />
       </Group>
     </Header>
   );
