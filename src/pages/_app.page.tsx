@@ -1,7 +1,8 @@
 import Header from "@/components/layout/header";
 import Navbar from "@/components/layout/navbar";
 import { Config } from "@/config";
-import { FetchFhirClient, FhirClient } from "@bonfhir/core/r4b";
+import { SystemLabels } from "@/fhir/known-identifiers";
+import { FetchFhirClient, FhirClient, Formatter } from "@bonfhir/core/r4b";
 import { MantineRenderer } from "@bonfhir/mantine/r4b";
 import { FhirQueryProvider } from "@bonfhir/query/r4b";
 import { FhirUIProvider } from "@bonfhir/react/r4b";
@@ -51,6 +52,9 @@ export default function App(props: AppProps) {
           <WithAuth>
             <FhirUIProvider
               renderer={MantineRenderer}
+              formatter={Formatter.build({
+                systemsLabels: SystemLabels,
+              })}
               onNavigate={({ target, aux }) => {
                 if (aux) {
                   window.open(target, "_blank");
