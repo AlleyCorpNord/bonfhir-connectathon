@@ -11,7 +11,8 @@
     "start-fhir-server": "docker run -p 8100:8100 -p 8103:8103 -v bonfhir-hackaton_fhir_data:/var/lib/postgresql/15/main -v bonfhir-hackaton_fhir_files:/usr/src/medplum/packages/server/dist/binary -e INITIAL_CLIENT_APP_REDIRECT_URI=http://localhost:3000/api/auth/callback/medplum --name bonfhir-hackaton_fhir_server --rm -d ghcr.io/bonfhir/medplum-devbox:latest",
     "stop-fhir-server": "docker stop bonfhir-hackaton_fhir_server",
     "add-sample-data": "npx @bonfhir/cli import --source synthea-sample --fhir r4b --base-url http://localhost:8103/fhir/R4/ --auth-token-url http://localhost:8103/oauth2/token --auth-client-id f54370de-eaf3-4d81-a17e-24860f667912 --auth-client-secret 75d8e7d06bf9283926c51d5f461295ccf0b69128e983b6ecdd5a9c07506895de",
-    "register-subscriptions": "curl -i --request POST 'http://localhost:3000/api/fhir/subscriptions/register' --header 'X-Subscription-Auth: secret'"
+    "register-subscriptions": "curl -i --request POST 'http://localhost:3000/api/fhir/subscriptions/register' --header 'X-Subscription-Auth: secret'",
+    "prepare": "husky install"
   },
   "prettier": {
     "plugins": [
@@ -51,6 +52,7 @@
     "eslint": "^8.50.0",
     "eslint-config-next": "^13.5.3",
     "eslint-config-prettier": "^9.0.0",
+    "husky": "^8.0.3",
     "prettier": "^3.0.3",
     "prettier-plugin-organize-imports": "^3.2.3",
     "typescript": "^5.2.2"
