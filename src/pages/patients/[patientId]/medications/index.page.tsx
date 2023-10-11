@@ -1,9 +1,9 @@
 import { Paper, Title } from "@mantine/core";
 
-export default function Overview() {
+export default function Medications() {
   return (
     <Paper>
-      <Title order={3}>Overview</Title>
+      <Title order={3}>Medications</Title>
     </Paper>
   );
 }

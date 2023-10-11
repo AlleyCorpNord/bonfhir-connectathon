@@ -17,8 +17,9 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { PropsWithChildren, useEffect, useState } from "react";
+import PatientLayout from "./patients/[patientId]/patient.layout";
 
 /**
  * Customize Mantine Theme.
@@ -41,6 +42,8 @@ export default function App(props: AppProps) {
     pageProps: { session, ...pageProps },
   } = props;
   const router = useRouter();
+
+  const hasPatientLayout = router.pathname.startsWith("/patients/");
 
   return (
     <>
@@ -72,7 +75,13 @@ export default function App(props: AppProps) {
                   },
                 })}
               >
-                <Component {...pageProps} />
+                {hasPatientLayout ? (
+                  <PatientLayout>
+                    <Component {...pageProps} />
+                  </PatientLayout>
+                ) : (
+                  <Component {...pageProps} />
+                )}
               </AppShell>
               <ReactQueryDevtools />
             </FhirUIProvider>
