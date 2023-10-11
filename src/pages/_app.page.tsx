@@ -14,12 +14,12 @@ import {
   MantineThemeOverride,
 } from "@mantine/core";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { NextPage } from "next";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { PropsWithChildren, useEffect, useState } from "react";
-import PatientLayout from "./patients/[patientId]/patient.layout";
 
 /**
  * Customize Mantine Theme.
@@ -36,14 +36,12 @@ const theme: MantineThemeOverride = {
   },
 };
 
-export default function App(props: AppProps) {
+export default function App(props: AppPropsWithLayout) {
   const {
     Component,
     pageProps: { session, ...pageProps },
   } = props;
   const router = useRouter();
-
-  const hasPatientLayout = router.pathname.startsWith("/patients/");
 
   return (
     <>
@@ -75,10 +73,10 @@ export default function App(props: AppProps) {
                   },
                 })}
               >
-                {hasPatientLayout ? (
-                  <PatientLayout>
+                {Component.layout ? (
+                  <Component.layout>
                     <Component {...pageProps} />
-                  </PatientLayout>
+                  </Component.layout>
                 ) : (
                   <Component {...pageProps} />
                 )}
@@ -134,3 +132,11 @@ function WithAuth(props: PropsWithChildren) {
     </FhirQueryProvider>
   );
 }
+
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  layout?: (props: PropsWithChildren) => JSX.Element;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};

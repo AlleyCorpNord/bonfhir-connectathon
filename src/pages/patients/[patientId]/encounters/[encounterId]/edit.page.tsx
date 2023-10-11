@@ -1,4 +1,5 @@
 import { Paper, Title } from "@mantine/core";
+import PatientLayout from "../../patient.layout";
 
 export default function EditEncounter() {
   return (
@@ -7,3 +8,5 @@ export default function EditEncounter() {
     </Paper>
   );
 }
+
+EditEncounter.layout = PatientLayout;
