@@ -13,6 +13,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { PropsWithChildren } from "react";
 import PatientInfo from "./patient-info";
+import { PatientContext } from "./patient.context";
 
 export default function PatientLayout({ children }: PropsWithChildren) {
   const router = useRouter();
@@ -29,7 +30,7 @@ export default function PatientLayout({ children }: PropsWithChildren) {
   return (
     <FhirQueryLoader query={patientQuery}>
       {(patient) => (
-        <>
+        <PatientContext.Provider value={{ patient }}>
           <Head>
             <title>
               {formatter.format("HumanName", patient.name, { max: 1 })}
@@ -80,7 +81,7 @@ export default function PatientLayout({ children }: PropsWithChildren) {
               {children}
             </Tabs>
           </Stack>
-        </>
+        </PatientContext.Provider>
       )}
     </FhirQueryLoader>
   );
