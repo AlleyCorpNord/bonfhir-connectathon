@@ -18,6 +18,10 @@ export default NextAuth({
       },
     },
   ],
+  session: {
+    strategy: "jwt",
+    maxAge: 3_600,
+  },
   secret: Config.server.authSecret,
   callbacks: {
     async jwt({ token, account }) {

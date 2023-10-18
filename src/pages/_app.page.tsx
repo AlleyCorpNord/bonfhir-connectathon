@@ -13,6 +13,8 @@ import {
   MantineProvider,
   MantineThemeOverride,
 } from "@mantine/core";
+import { ModalsProvider } from "@mantine/modals";
+import { Notifications } from "@mantine/notifications";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { NextPage } from "next";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
@@ -49,6 +51,7 @@ export default function App(props: AppPropsWithLayout) {
         <title>Hackaton bonFHIR</title>
       </Head>
       <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+        <Notifications />
         <SessionProvider session={session}>
           <WithAuth>
             <FhirUIProvider
@@ -64,23 +67,25 @@ export default function App(props: AppPropsWithLayout) {
                 }
               }}
             >
-              <AppShell
-                header={<Header />}
-                navbar={<Navbar />}
-                styles={(theme) => ({
-                  main: {
-                    backgroundColor: theme.colors.gray[0],
-                  },
-                })}
-              >
-                {Component.layout ? (
-                  <Component.layout>
+              <ModalsProvider>
+                <AppShell
+                  header={<Header />}
+                  navbar={<Navbar />}
+                  styles={(theme) => ({
+                    main: {
+                      backgroundColor: theme.colors.gray[0],
+                    },
+                  })}
+                >
+                  {Component.layout ? (
+                    <Component.layout>
+                      <Component {...pageProps} />
+                    </Component.layout>
+                  ) : (
                     <Component {...pageProps} />
-                  </Component.layout>
-                ) : (
-                  <Component {...pageProps} />
-                )}
-              </AppShell>
+                  )}
+                </AppShell>
+              </ModalsProvider>
               <ReactQueryDevtools />
             </FhirUIProvider>
           </WithAuth>
@@ -114,7 +119,7 @@ function WithAuth(props: PropsWithChildren) {
         }),
       );
     }
-  }, [session]);
+  }, [session?.accessToken]);
 
   if (status !== "authenticated" || !session?.accessToken || !fhirClient) {
     return (
