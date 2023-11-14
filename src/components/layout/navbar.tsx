@@ -1,4 +1,4 @@
-import { NavLink, Navbar, Stack, useMantineTheme } from "@mantine/core";
+import { AppShell, NavLink, Stack, useMantineTheme } from "@mantine/core";
 import {
   IconCalendar,
   IconClipboardData,
@@ -23,25 +23,25 @@ export default function AppNavbar() {
   const router = useRouter();
   const theme = useMantineTheme();
   return (
-    <Navbar height="100vh" width={{ sm: 160 }}>
-      <Navbar.Section grow mt="xs">
-        <Stack spacing={0}>
-          {links.map((link) => (
-            <NavLink
-              key={link.label}
-              component={Link}
-              href={link.link}
-              icon={link.icon}
-              label={link.label}
-              active={
-                link.link === "/"
-                  ? router.pathname === link.link
-                  : router.pathname.startsWith(link.link)
-              }
-            />
-          ))}
-        </Stack>
-      </Navbar.Section>
-    </Navbar>
+    // <AppShell.Navbar h="100vh" w={{ sm: 160 }}>
+    <AppShell.Section grow mt="xs">
+      <Stack gap={0}>
+        {links.map((link) => (
+          <NavLink
+            key={link.label}
+            component={Link}
+            href={link.link}
+            leftSection={link.icon}
+            label={link.label}
+            active={
+              link.link === "/"
+                ? router.pathname === link.link
+                : router.pathname.startsWith(link.link)
+            }
+          />
+        ))}
+      </Stack>
+    </AppShell.Section>
+    // </AppShell.Navbar>
   );
 }

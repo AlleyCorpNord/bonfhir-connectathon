@@ -11,8 +11,9 @@ import {
   Center,
   Loader,
   MantineProvider,
-  MantineThemeOverride,
+  createTheme,
 } from "@mantine/core";
+import "@mantine/core/styles.css";
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -25,9 +26,9 @@ import { PropsWithChildren, useEffect, useState } from "react";
 
 /**
  * Customize Mantine Theme.
- * https://v6.mantine.dev/theming/theme-object/
+ * https://mantine.dev/theming/theme-object/
  */
-const theme: MantineThemeOverride = {
+const theme = createTheme({
   components: {
     Paper: {
       defaultProps: {
@@ -36,7 +37,7 @@ const theme: MantineThemeOverride = {
       },
     },
   },
-};
+});
 
 export default function App(props: AppPropsWithLayout) {
   const {
@@ -49,8 +50,12 @@ export default function App(props: AppPropsWithLayout) {
     <>
       <Head>
         <title>Hackaton bonFHIR</title>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
       </Head>
-      <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+      <MantineProvider theme={theme}>
         <Notifications />
         <SessionProvider session={session}>
           <WithAuth>
@@ -69,21 +74,30 @@ export default function App(props: AppPropsWithLayout) {
             >
               <ModalsProvider>
                 <AppShell
-                  header={<Header />}
-                  navbar={<Navbar />}
+                  header={{ height: 60 }}
+                  navbar={{ width: { sm: 160 }, breakpoint: "sm" }}
+                  padding="md"
                   styles={(theme) => ({
                     main: {
                       backgroundColor: theme.colors.gray[0],
                     },
                   })}
                 >
-                  {Component.layout ? (
-                    <Component.layout>
+                  <AppShell.Header>
+                    <Header />
+                  </AppShell.Header>
+                  <AppShell.Navbar>
+                    <Navbar />
+                  </AppShell.Navbar>
+                  <AppShell.Main>
+                    {Component.layout ? (
+                      <Component.layout>
+                        <Component {...pageProps} />
+                      </Component.layout>
+                    ) : (
                       <Component {...pageProps} />
-                    </Component.layout>
-                  ) : (
-                    <Component {...pageProps} />
-                  )}
+                    )}
+                  </AppShell.Main>
                 </AppShell>
               </ModalsProvider>
               <ReactQueryDevtools />
@@ -123,10 +137,15 @@ function WithAuth(props: PropsWithChildren) {
 
   if (status !== "authenticated" || !session?.accessToken || !fhirClient) {
     return (
-      <AppShell header={<Header />}>
-        <Center h="100%">
-          <Loader />
-        </Center>
+      <AppShell>
+        <AppShell.Header>
+          <Header />
+        </AppShell.Header>
+        <AppShell.Main>
+          <Center h="100vh">
+            <Loader />
+          </Center>
+        </AppShell.Main>
       </AppShell>
     );
   }

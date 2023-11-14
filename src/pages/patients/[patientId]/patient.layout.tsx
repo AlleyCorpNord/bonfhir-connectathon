@@ -40,7 +40,7 @@ export default function PatientLayout({ children }: PropsWithChildren) {
             <PatientInfo patient={patient} />
             <Tabs
               value={activeTab}
-              onTabChange={(tab) =>
+              onChange={(tab) =>
                 router.push(
                   tab === "overview"
                     ? `/patients/${patientId}`
@@ -49,29 +49,38 @@ export default function PatientLayout({ children }: PropsWithChildren) {
               }
             >
               <Tabs.List>
-                <Tabs.Tab icon={<IconUser size="0.8rem" />} value="overview">
+                <Tabs.Tab
+                  leftSection={<IconUser size="0.8rem" />}
+                  value="overview"
+                >
                   Overview
                 </Tabs.Tab>
                 <Tabs.Tab
-                  icon={<IconCalendar size="0.8rem" />}
+                  leftSection={<IconCalendar size="0.8rem" />}
                   value="appointments"
                 >
                   Appointments
                 </Tabs.Tab>
                 <Tabs.Tab
-                  icon={<IconStethoscope size="0.8rem" />}
+                  leftSection={<IconStethoscope size="0.8rem" />}
                   value="conditions"
                 >
                   Conditions
                 </Tabs.Tab>
-                <Tabs.Tab icon={<IconPill size="0.8rem" />} value="medications">
+                <Tabs.Tab
+                  leftSection={<IconPill size="0.8rem" />}
+                  value="medications"
+                >
                   Medications
                 </Tabs.Tab>
-                <Tabs.Tab icon={<IconActivity size="0.8rem" />} value="vitals">
+                <Tabs.Tab
+                  leftSection={<IconActivity size="0.8rem" />}
+                  value="vitals"
+                >
                   Vitals
                 </Tabs.Tab>
                 <Tabs.Tab
-                  icon={<IconClipboardText size="0.8rem" />}
+                  leftSection={<IconClipboardText size="0.8rem" />}
                   value="encounters"
                 >
                   Encounters

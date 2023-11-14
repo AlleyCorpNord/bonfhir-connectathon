@@ -12,12 +12,12 @@ export default function PatientInfo({ patient }: PatientInfoProps) {
   const router = useRouter();
 
   return (
-    <Stack spacing="sm">
-      <Stack align="flex-start" spacing="xs">
+    <Stack gap="sm">
+      <Stack align="flex-start" gap="xs">
         <Button
           variant="subtle"
-          compact
-          leftIcon={<IconArrowLeft />}
+          size="compact-sm"
+          leftSection={<IconArrowLeft />}
           onClick={() => router.push("/patients")}
         >
           Back to Patient List
