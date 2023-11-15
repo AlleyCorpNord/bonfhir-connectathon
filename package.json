@@ -2,6 +2,7 @@
   "name": "bonfhir-hackaton",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "NEXTAUTH_URL=http://localhost:3000 next dev",
     "build": "next build",
