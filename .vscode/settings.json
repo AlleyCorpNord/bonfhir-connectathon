@@ -40,5 +40,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
-  "cSpell.words": ["bonfhir", "Fhir", "mantine"]
+  "cSpell.words": ["bonfhir", "Fhir", "mantine"],
+  "explorer.excludeGitIgnore": true,
+  "explorer.fileNesting.enabled": true
 }
