@@ -33,10 +33,10 @@
   },
   "dependencies": {
     "@bonfhir/core": "^2.16.1",
-    "@bonfhir/mantine": "^3.0.0",
+    "@bonfhir/mantine": "^3.1.1",
     "@bonfhir/next": "^2.4.0",
     "@bonfhir/query": "^2.5.0",
-    "@bonfhir/react": "^2.7.0",
+    "@bonfhir/react": "^2.8.0",
     "@bonfhir/subscriptions": "^2.3.0",
     "@mantine/core": "^7.2.2",
     "@mantine/dates": "^7.2.2",
@@ -45,20 +45,20 @@
     "@mantine/modals": "^7.2.2",
     "@mantine/notifications": "^7.2.2",
     "@mantine/tiptap": "^7.2.2",
-    "@tabler/icons-react": "^2.40.0",
+    "@tabler/icons-react": "^2.41.0",
     "@tanstack/react-query": "^4.36.1",
     "@tanstack/react-query-devtools": "^4.36.1",
-    "next": "^14.0.2",
+    "next": "^14.0.3",
     "next-auth": "^4.24.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20.9.0",
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
-    "eslint": "^8.53.0",
-    "eslint-config-next": "^14.0.2",
+    "@types/node": "^20.9.3",
+    "@types/react": "^18.2.38",
+    "@types/react-dom": "^18.2.16",
+    "eslint": "^8.54.0",
+    "eslint-config-next": "^14.0.3",
     "eslint-config-prettier": "^9.0.0",
     "husky": "^8.0.3",
     "postcss": "^8.4.31",
@@ -66,7 +66,7 @@
     "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.1.0",
     "prettier-plugin-organize-imports": "^3.2.4",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.0"
   },
   "engines": {
     "node": ">=18.17.1"

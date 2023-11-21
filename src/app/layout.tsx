@@ -14,8 +14,11 @@ import {
   createTheme,
 } from "@mantine/core";
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
+import "@mantine/notifications/styles.css";
+import "@mantine/tiptap/styles.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -33,6 +36,11 @@ const theme = createTheme({
       defaultProps: {
         p: "sm",
         shadow: "xs",
+      },
+    },
+    Table: {
+      defaultProps: {
+        striped: true,
       },
     },
   },

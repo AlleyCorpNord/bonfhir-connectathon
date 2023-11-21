@@ -1,3 +1,4 @@
+"use client";
 import { Paper, Title } from "@mantine/core";
 
 export default function Appointments() {
