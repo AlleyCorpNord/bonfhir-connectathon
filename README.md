@@ -1,5 +1,8 @@
 ![bonFHIR logo](https://bonfhir.dev/img/bonfhir_logo.svg)
 
+What's a FHIR connectathon?  
+https://www.hl7.org/events/fhir-connectathon/index.cfm
+
 ## Useful links
 
 - App repo: https://github.com/AlleyCorpNord/bonfhir-hackaton
@@ -10,6 +13,8 @@
 - FHIR documentation: https://hl7.org/fhir/R4B/ (be careful to look at **R4B** and not the latest which is R5)
 - Next.js documentation: https://nextjs.org/docs
 - Mantine documentation: https://mantine.dev/
+
+## Environments
 
 - 👩‍⚕️ Medplum app: https://app.medplum.alleycorpnord.com/
   - Connect with your email + `medplum_admin` as password
