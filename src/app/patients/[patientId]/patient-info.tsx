@@ -1,8 +1,9 @@
 "use client";
 import { Patient } from "@bonfhir/core/r4b";
 import { FhirValue } from "@bonfhir/react/r4b";
-import { Button, Paper, Stack, Title } from "@mantine/core";
-import { IconArrowLeft } from "@tabler/icons-react";
+import { ActionIcon, Button, Group, Paper, Stack, Title } from "@mantine/core";
+import { IconArrowLeft, IconEdit } from "@tabler/icons-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export interface PatientInfoProps {
@@ -25,9 +26,20 @@ export default function PatientInfo({ patient }: PatientInfoProps) {
         </Button>
       </Stack>
       <Paper>
-        <Title order={3}>
-          <FhirValue type="HumanName" value={patient.name} />
-        </Title>
+        <Group justify="space-between">
+          <Title order={3}>
+            <FhirValue type="HumanName" value={patient.name} />
+          </Title>
+          <ActionIcon
+            component={Link}
+            href={`/patients/${patient.id}/edit`}
+            variant="subtle"
+            size="sm"
+            aria-label="Edit"
+          >
+            <IconEdit />
+          </ActionIcon>
+        </Group>
       </Paper>
     </Stack>
   );
